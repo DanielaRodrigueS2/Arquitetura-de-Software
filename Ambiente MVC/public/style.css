@@ -34,7 +34,20 @@ html, body{
     height: 60%;
 }
 
-button{
+.popUp{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 35%;
+    align-items: center;
+    visibility: hidden;
+    position: absolute;
+    background-color: rgb(169, 224, 137);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.botaoDado{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -48,8 +61,27 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+.botaoPop{
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+    background-color: rgb(159, 216, 67);
+    color: white;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+}
+
+.botaoDado:hover{
     background-color: rgb(100, 177, 100);
 }
+
+.botaoPop:hover{
+    background-color: rgb(130, 200, 30);
+}
+
+
 
 

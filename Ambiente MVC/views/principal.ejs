@@ -6,7 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roleta de Dados RPG</title>
     <link rel="stylesheet" href="/style.css">
+
 </head>
+
+<script>
+    
+    window.onload = () => {
+            const popUp = document.querySelector('.popUp');
+            const valorGeradoEl = document.getElementById('valor_gerado');
+            const botaoPop = document.querySelector('.botaoPop');
+            const botoesDado = document.querySelectorAll('.botaoDado'); 
+            
+            popUp.style.visibility = 'hidden';
+
+            
+            botaoPop.addEventListener('click', () => {
+                popUp.style.visibility = 'hidden';
+            });
+
+            
+            botoesDado.forEach(botao => {
+                botao.addEventListener('click', () => {
+                    const tipoDado = parseInt(botao.id.replace('d', ''), 10); 
+
+                    
+                    fetch('/rodarDados', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ tipoDado }) 
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const valorGerado = data.valorGerado; 
+                        valorGeradoEl.textContent = valorGerado; 
+                        popUp.style.visibility = 'visible'; 
+                    })
+                    .catch(error => {
+                        console.error('erro >:(', error);
+                    });
+                });
+            });
+        };
+
+</script>
 
 <body>
     
@@ -15,15 +59,22 @@
             <h1>Ambiente Configurado, escolha um dado para rodar</h1>
         </header>
 
+        <div class="popUp">
+            <h2>Valor gerado: </h2>
+            <h2 id="valor_gerado"></h2>
+            <button class="botaoPop">Confirmar</button>
+        </div>
+
         <div class="botoes">
-            <button class="d4">D4</button>
-            <button class="d6">D6</button>
-            <button class="d8">D8</button>
-            <button class="d10">D10</button>
-            <button class="d12">D12</button>
-            <button class="d20">D20</button>
+            <button id="d4" class="botaoDado">D4</button>
+            <button id="d6" class="botaoDado">D6</button>
+            <button id="d8" class="botaoDado">D8</button>
+            <button id="d10" class="botaoDado">D10</button>
+            <button id="d12" class="botaoDado">D12</button>
+            <button id="d20"class="botaoDado">D20</button>
         </div>
     </main>
+
 
 </body>
 </html>
