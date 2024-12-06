@@ -28,9 +28,9 @@
             botoesDado.forEach(botao => {
                 botao.addEventListener('click', () => {
                     const tipoDado = parseInt(botao.id.replace('d', ''), 10); 
-
+                    console.log('sapo')
                     
-                    fetch('/rodarDados', {
+                    fetch('http://localhost:4000/rodarDados', { //erro principal 2, que ódio
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

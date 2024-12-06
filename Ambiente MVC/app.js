@@ -15,6 +15,6 @@ app.get('/', (req, res) =>{
 
 app.post('/rodarDados', rodarDadoController.rodarDado)
 
-app.listen(3000, () =>
+app.listen(4000, () => // usei essa porta porque a 300 não estava funcionando
     console.log("Server foi inciado")
 );
