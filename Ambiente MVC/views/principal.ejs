@@ -12,38 +12,41 @@
 <script>
     
     window.onload = () => {
+            // Declaração dos elementos do hmtl
             const popUp = document.querySelector('.popUp');
             const valorGeradoEl = document.getElementById('valor_gerado');
             const botaoPop = document.querySelector('.botaoPop');
             const botoesDado = document.querySelectorAll('.botaoDado'); 
             
+            //Definição do popUp como invisivel
             popUp.style.visibility = 'hidden';
 
-            
+            //Botão 'confirmar' do popUp - fecha o popup
             botaoPop.addEventListener('click', () => {
                 popUp.style.visibility = 'hidden';
             });
 
-            
+            // Função que cria uma função de onclick para cada botao
             botoesDado.forEach(botao => {
                 botao.addEventListener('click', () => {
+                    // ParseInt para pegar o valor do dado em int D10 -> 10
                     const tipoDado = parseInt(botao.id.replace('d', ''), 10); 
                     console.log('sapo')
                     
-                    fetch('http://localhost:4000/rodarDados', { //erro principal 2, que ódio
+                    fetch('http://localhost:4000/rodarDados', { //Envio do tipo de dado que foi clicado
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({ tipoDado }) 
                     })
-                    .then(response => response.json())
-                    .then(data => {
+                    .then(response => response.json()) // Captura da reposta recebida pelo controller 
+                    .then(data => { // Pega o valor recebido pelo Json e atribui para o texto do Popup e exibindo-o
                         const valorGerado = data.valorGerado; 
                         valorGeradoEl.textContent = valorGerado; 
                         popUp.style.visibility = 'visible'; 
                     })
-                    .catch(error => {
+                    .catch(error => { // Catch caso aconteça algum erro
                         console.error('erro >:(', error);
                     });
                 });
@@ -51,6 +54,7 @@
         };
 
 </script>
+
 
 <body>
     
