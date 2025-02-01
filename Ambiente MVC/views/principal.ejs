@@ -29,6 +29,7 @@
             // Função que cria uma função de onclick para cada botao
             botoesDado.forEach(botao => {
                 botao.addEventListener('click', () => {
+                    console.log('clicou')
                     // ParseInt para pegar o valor do dado em int D10 -> 10
                     const tipoDado = parseInt(botao.id.replace('d', ''), 10); 
                     console.log('sapo')
